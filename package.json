@@ -1,0 +1,15 @@
+{
+  "name": "landing-page-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack landing page with admin panel",
+  "scripts": {
+    "install-all": "cd backend && npm install && cd ../frontend && npm install",
+    "backend": "cd backend && npm start",
+    "frontend": "cd frontend && npm start",
+    "dev-backend": "cd backend && npm run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
