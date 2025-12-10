@@ -184,46 +184,75 @@ LandingPage/
 
 ## Deployment
 
-### Backend Deployment
+This project is configured for deployment on free-tier platforms:
 
-1. **Heroku**:
-   ```bash
-   cd backend
-   heroku create your-app-name
-   heroku config:set MONGODB_URI=your_mongodb_uri
-   git push heroku main
-   ```
+### Recommended Deployment Stack
 
-2. **AWS/Google Cloud/Azure**:
-   - Follow platform-specific Node.js deployment guides
-   - Set environment variables for `PORT` and `MONGODB_URI`
-   - Ensure `uploads` directory is writable
+- **Backend:** Render.com (Free Tier)
+- **Frontend:** Netlify (Free Tier)
+- **Database:** MongoDB Atlas (Free Tier)
 
-### Frontend Deployment
+### Quick Deployment Guide
 
-1. **Build the React app**:
-   ```bash
-   cd frontend
-   npm run build
-   ```
+**📖 Complete Guide:** See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md)
 
-2. **Deploy to Netlify/Vercel**:
-   - Connect your repository
+**⚡ Quick Guide:** See [QUICK_DEPLOY.md](QUICK_DEPLOY.md)
+
+**✅ Checklist:** See [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)
+
+### Deployment Steps Summary
+
+1. **MongoDB Atlas Setup**
+   - Sign up at https://www.mongodb.com/cloud/atlas
+   - Create free cluster (M0)
+   - Create database user
+   - Whitelist IP address
+   - Get connection string
+
+2. **Backend Deployment (Render)**
+   - Sign up at https://render.com
+   - Connect GitHub repository
+   - Create Web Service
+   - Set root directory: `backend`
+   - Add environment variables: `PORT`, `MONGODB_URI`
+   - Deploy
+
+3. **Frontend Deployment (Netlify)**
+   - Sign up at https://www.netlify.com
+   - Connect GitHub repository
+   - Set base directory: `frontend`
    - Set build command: `npm run build`
-   - Set publish directory: `build`
-   - Add environment variable: `REACT_APP_API_URL` (your backend URL)
+   - Set publish directory: `frontend/build`
+   - Add environment variable: `REACT_APP_API_URL`
+   - Deploy
 
-3. **Update API URL**:
-   - Update `REACT_APP_API_URL` in frontend `.env` to point to your deployed backend
-   - Rebuild and redeploy
+4. **Update CORS**
+   - Add frontend URL to backend CORS settings
+   - Redeploy backend
 
-### MongoDB Atlas Setup
+### Configuration Files
 
-1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a new cluster
-3. Create a database user
-4. Whitelist your IP address (or use `0.0.0.0/0` for development)
-5. Get your connection string and update `MONGODB_URI` in backend `.env`
+- `render.yaml` - Render.com backend configuration
+- `netlify.toml` - Netlify frontend configuration
+- `backend/render.yaml` - Alternative Render config
+
+### Environment Variables
+
+**Backend (Render):**
+- `PORT` = `10000`
+- `MONGODB_URI` = Your MongoDB Atlas connection string
+- `CORS_ORIGIN` = Your Netlify frontend URL
+
+**Frontend (Netlify):**
+- `REACT_APP_API_URL` = Your Render backend URL + `/api`
+
+### Alternative Platforms
+
+You can also deploy on:
+- **Backend:** Heroku, Railway, Fly.io, AWS, Azure, Google Cloud
+- **Frontend:** Vercel, GitHub Pages, AWS S3, Azure Static Web Apps
+
+See [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) for detailed instructions.
 
 ## Environment Variables
 
